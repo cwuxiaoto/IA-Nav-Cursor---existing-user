@@ -268,17 +268,6 @@
       <!-- Home / Dashboard page (screenshot 1) -->
       <div class="page-content page-home" id="page-home">
       <main class="main-content home-dashboard">
-        <!-- Spend limit warning banner (replaces credit banner) -->
-        <div class="spend-limit-banner" id="onboarding-credit-banner">
-          <span class="spend-limit-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
-          <div class="spend-limit-content">
-            <p class="spend-limit-text">You are nearing your Tier 1 spend limit. You've used 50% of your monthly spend limit.</p>
-          </div>
-          <a href="#" class="spend-limit-link" id="spend-limit-go-link" data-page="limits">Go to Limit</a>
-          <button type="button" class="spend-limit-btn-upgrade" id="home-upgrade-limit-btn">Upgrade my limit</button>
-          <button type="button" class="spend-limit-dismiss" id="onboarding-credit-dismiss" aria-label="Dismiss"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-        </div>
-
         <p class="date-text">Feb 4, 2026, Wednesday</p>
         <h1 class="welcome-title">Welcome aboard, <span class="welcome-team"><svg class="welcome-team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> My Team</span></h1>
 
@@ -298,10 +287,29 @@
             <span class="home-metric-value">$103.23</span>
             <a href="#" class="home-metric-link">Learn more</a>
           </div>
-          <div class="home-metric-card">
-            <span class="home-metric-label">Credits remaining</span>
-            <span class="home-metric-value">$3.00</span>
-            <a href="#" class="home-metric-link">Go to Billing →</a>
+          <div class="home-metric-card home-team-limit-card">
+            <div class="home-team-limit-header">
+              <span class="home-team-limit-warning-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+              <span class="home-team-limit-title">You're nearing the limit for your team</span>
+            </div>
+            <div class="home-team-limit-resource">
+              <div class="home-team-limit-resource-head">
+                <span class="home-team-limit-resource-name">GPU Droplet</span>
+                <span class="home-team-limit-resource-usage">8/10 used · 80%</span>
+              </div>
+              <div class="home-team-limit-bar-wrap"><div class="home-team-limit-bar" style="width:80%"></div></div>
+            </div>
+            <div class="home-team-limit-resource">
+              <div class="home-team-limit-resource-head">
+                <span class="home-team-limit-resource-name">Serverless Inference</span>
+                <span class="home-team-limit-resource-usage">8/10 used · 80%</span>
+              </div>
+              <div class="home-team-limit-bar-wrap"><div class="home-team-limit-bar" style="width:80%"></div></div>
+            </div>
+            <div class="home-team-limit-footer">
+              <a href="#" class="home-team-limit-learn" data-page="limits">Learn more about limits <span class="gd-ext-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>
+              <button type="button" class="home-team-limit-btn" id="home-team-limit-increase-btn">Increase your limit</button>
+            </div>
           </div>
         </div>
 
@@ -1960,7 +1968,7 @@ for chunk in response:
               <span class="gd-limit-option-radio gd-limit-option-radio-selected"></span>
               <div class="gd-limit-option-text">
                 <div class="gd-limit-option-head">
-                  <strong>Prepay for Immediate Unlock</strong>
+                  <strong>Prepay for immediate unlock</strong>
                   <span class="gd-limit-option-badge">FASTEST</span>
                 </div>
                 <p>Automatically unlock a limit increase. This is a one time pre-payment that will be automatically applied as account credit towards future DigitalOcean resource usage. You only pay for what you use.</p>
@@ -1980,67 +1988,94 @@ for chunk in response:
           </div>
         </div>
 
-        <!-- Step 2: Prepay tier selection -->
+        <!-- Step 2: Prepay tier selection (Image 1 collapsed / Image 2 expanded) -->
         <div class="gd-limit-step" id="gd-limit-step2" hidden>
           <a href="#" class="gd-limit-back-link" id="gd-limit-step2-back">&#8592; Back</a>
           <p class="gd-limit-modal-intro">Increase your limits by prepaying to increase your monthly spend limits*. This is a one time pre-payment that will be automatically applied as account credit towards future resource usage. You only pay for what you use.</p>
           <a href="#" class="gd-limit-modal-link">See more about limits <span class="gd-ext-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>
-          <div class="gd-limit-tier-grid">
-            <div class="gd-limit-tier gd-limit-tier-current" data-tier="1">
-              <div class="gd-limit-tier-head"><span class="gd-limit-tier-radio" aria-hidden="true"></span><strong>Tier 1</strong><span class="gd-limit-tier-badge">CURRENT PLAN</span></div>
-              <p class="gd-limit-tier-usage">Basic Droplets: 3/3 used &#183; 100%</p>
-              <div class="gd-limit-bar-wrap gd-limit-bar-red"><div class="gd-limit-bar" style="width:100%"></div></div>
-              <ul class="gd-limit-tier-features">
-                <li class="gd-limit-check">$50 monthly charge threshold</li>
-                <li class="gd-limit-check">Max of 3 Basic Droplets</li>
-                <li class="gd-limit-cross">No access to GPU Droplets</li>
-              </ul>
+          <div class="gd-limit-tier-row gd-limit-tier-grid">
+            <div class="gd-limit-tier gd-limit-tier-current gd-limit-tier-band-neutral" data-tier="1">
+              <div class="gd-limit-tier-band"></div>
+              <div class="gd-limit-tier-inner">
+                <div class="gd-limit-tier-head"><span class="gd-limit-tier-radio" aria-hidden="true"></span><strong>Tier 1</strong><span class="gd-limit-tier-badge">CURRENT PLAN</span></div>
+                <p class="gd-limit-tier-usage">Basic Droplets: 3/3 used &#183; 100%</p>
+                <div class="gd-limit-bar-wrap gd-limit-bar-red"><div class="gd-limit-bar" style="width:100%"></div></div>
+                <ul class="gd-limit-tier-features">
+                  <li class="gd-limit-check">$50 monthly charge threshold</li>
+                  <li class="gd-limit-check">Max of 3 Basic Droplets</li>
+                  <li class="gd-limit-cross">No access to GPU Droplets</li>
+                </ul>
+              </div>
             </div>
-            <div class="gd-limit-tier gd-limit-tier-selectable gd-limit-tier-selected" data-tier="2" data-amount="50" data-threshold="$250 monthly charge threshold" data-tier-name="Tier 2">
-              <div class="gd-limit-tier-head"><span class="gd-limit-tier-radio gd-limit-tier-radio-selected" aria-hidden="true"></span><strong>Tier 2</strong></div>
-              <p class="gd-limit-tier-prepay"><strong>$50</strong> / prepayment amount</p>
-              <ul class="gd-limit-tier-features">
-                <li class="gd-limit-check">$250 monthly charge threshold</li>
-                <li class="gd-limit-check">Max of 10 Basic Droplets</li>
-                <li class="gd-limit-check">description</li>
-              </ul>
+            <div class="gd-limit-tier gd-limit-tier-selectable gd-limit-tier-selected gd-limit-tier-band-2" data-tier="2" data-amount="50" data-threshold="$250 monthly charge threshold" data-tier-name="Tier 2">
+              <div class="gd-limit-tier-band"></div>
+              <div class="gd-limit-tier-inner">
+                <div class="gd-limit-tier-head"><span class="gd-limit-tier-radio gd-limit-tier-radio-selected" aria-hidden="true"></span><strong>Tier 2</strong></div>
+                <p class="gd-limit-tier-prepay"><strong>$50</strong> / prepayment amount</p>
+                <ul class="gd-limit-tier-features">
+                  <li class="gd-limit-check">$250 monthly charge threshold</li>
+                  <li class="gd-limit-check">Max of 10 Basic Droplets</li>
+                  <li class="gd-limit-check">description</li>
+                </ul>
+              </div>
             </div>
-            <div class="gd-limit-tier gd-limit-tier-selectable" data-tier="3" data-amount="250" data-threshold="$1,250 monthly charge threshold" data-tier-name="Tier 3">
-              <div class="gd-limit-tier-head"><span class="gd-limit-tier-radio" aria-hidden="true"></span><strong>Tier 3</strong></div>
-              <p class="gd-limit-tier-prepay"><strong>$250</strong> / prepayment amount</p>
-              <ul class="gd-limit-tier-features">
-                <li class="gd-limit-check">$1,250 monthly charge threshold</li>
-                <li class="gd-limit-check">Max of 15 Basic Droplets</li>
-                <li class="gd-limit-check">description</li>
-                <li class="gd-limit-check">Access to GPU Droplets</li>
-              </ul>
+            <div class="gd-limit-tier gd-limit-tier-selectable gd-limit-tier-band-3" data-tier="3" data-amount="250" data-threshold="$1,250 monthly charge threshold" data-tier-name="Tier 3">
+              <div class="gd-limit-tier-band"></div>
+              <div class="gd-limit-tier-inner">
+                <div class="gd-limit-tier-head"><span class="gd-limit-tier-radio" aria-hidden="true"></span><strong>Tier 3</strong></div>
+                <p class="gd-limit-tier-prepay"><strong>$250</strong> / prepayment amount</p>
+                <ul class="gd-limit-tier-features">
+                  <li class="gd-limit-check">$1,250 monthly charge threshold</li>
+                  <li class="gd-limit-check">Max of 15 Basic Droplets</li>
+                  <li class="gd-limit-check">description</li>
+                  <li class="gd-limit-check">Access to GPU Droplets</li>
+                </ul>
+              </div>
             </div>
-            <div class="gd-limit-tier gd-limit-tier-selectable" data-tier="4" data-amount="1000" data-threshold="$5,000 monthly charge threshold" data-tier-name="Tier 4">
-              <div class="gd-limit-tier-head"><span class="gd-limit-tier-radio" aria-hidden="true"></span><strong>Tier 4</strong></div>
-              <p class="gd-limit-tier-prepay"><strong>$1,000</strong> / prepayment amount</p>
-              <ul class="gd-limit-tier-features">
-                <li class="gd-limit-check">$5,000 monthly charge threshold</li>
-                <li class="gd-limit-check">Max of 25 Basic Droplets</li>
-                <li class="gd-limit-check">Access to GPU Droplets</li>
-              </ul>
-            </div>
-            <div class="gd-limit-tier gd-limit-tier-selectable" data-tier="5" data-amount="4000" data-threshold="$20,000 monthly charge threshold" data-tier-name="Tier 5">
-              <div class="gd-limit-tier-head"><span class="gd-limit-tier-radio" aria-hidden="true"></span><strong>Tier 5</strong></div>
-              <p class="gd-limit-tier-prepay"><strong>$4,000</strong> / prepayment amount</p>
-              <ul class="gd-limit-tier-features">
-                <li class="gd-limit-check">$20,000 monthly charge threshold</li>
-                <li class="gd-limit-check">Access to GPU Droplets</li>
-                <li class="gd-limit-check">Max of 100 Basic Droplets</li>
-              </ul>
-            </div>
-            <div class="gd-limit-tier gd-limit-tier-selectable gd-limit-tier-custom" data-tier="custom" data-amount="custom" data-threshold="Custom" data-tier-name="Custom">
-              <div class="gd-limit-tier-head"><span class="gd-limit-tier-radio" aria-hidden="true"></span><strong>Custom</strong></div>
-              <p class="gd-limit-tier-prepay">Explore custom limits with a member of the sales team.</p>
-              <ul class="gd-limit-tier-features">
-                <li class="gd-limit-check">Custom for your needs</li>
-                <li class="gd-limit-check">description</li>
-                <li class="gd-limit-check">description</li>
-              </ul>
+          </div>
+          <div class="gd-limit-see-all-wrap">
+          <button type="button" class="gd-limit-see-all-link" id="gd-limit-see-all-btn" aria-expanded="false">
+            <span class="gd-limit-see-all-text">See all limit options</span> <span class="gd-limit-see-all-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          </div>
+          <div class="gd-limit-tier-expandable" id="gd-limit-tier-expandable" hidden>
+            <div class="gd-limit-tier-row gd-limit-tier-grid">
+              <div class="gd-limit-tier gd-limit-tier-selectable gd-limit-tier-band-4" data-tier="4" data-amount="1000" data-threshold="$5,000 monthly charge threshold" data-tier-name="Tier 4">
+                <div class="gd-limit-tier-band"></div>
+                <div class="gd-limit-tier-inner">
+                  <div class="gd-limit-tier-head"><span class="gd-limit-tier-radio" aria-hidden="true"></span><strong>Tier 4</strong></div>
+                  <p class="gd-limit-tier-prepay"><strong>$1,000</strong> / prepayment amount</p>
+                  <ul class="gd-limit-tier-features">
+                    <li class="gd-limit-check">$5,000 monthly charge threshold</li>
+                    <li class="gd-limit-check">Max of 25 Basic Droplets</li>
+                    <li class="gd-limit-check">Access to GPU Droplets</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="gd-limit-tier gd-limit-tier-selectable gd-limit-tier-band-5" data-tier="5" data-amount="4000" data-threshold="$20,000 monthly charge threshold" data-tier-name="Tier 5">
+                <div class="gd-limit-tier-band"></div>
+                <div class="gd-limit-tier-inner">
+                  <div class="gd-limit-tier-head"><span class="gd-limit-tier-radio" aria-hidden="true"></span><strong>Tier 5</strong></div>
+                  <p class="gd-limit-tier-prepay"><strong>$4,000</strong> / prepayment amount</p>
+                  <ul class="gd-limit-tier-features">
+                    <li class="gd-limit-check">$20,000 monthly charge threshold</li>
+                    <li class="gd-limit-check">Access to GPU Droplets</li>
+                    <li class="gd-limit-check">Max of 100 Basic Droplets</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="gd-limit-tier gd-limit-tier-selectable gd-limit-tier-custom gd-limit-tier-band-custom" data-tier="custom" data-amount="custom" data-threshold="Custom" data-tier-name="Custom">
+                <div class="gd-limit-tier-band"></div>
+                <div class="gd-limit-tier-inner">
+                  <div class="gd-limit-tier-head"><span class="gd-limit-tier-radio" aria-hidden="true"></span><strong>Custom</strong></div>
+                  <p class="gd-limit-tier-prepay">Explore custom limits with a member of the sales team.</p>
+                  <ul class="gd-limit-tier-features">
+                    <li class="gd-limit-check">Custom for your needs</li>
+                    <li class="gd-limit-check">description</li>
+                    <li class="gd-limit-check">description</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <p class="gd-limit-modal-footnote">*Monthly charge thresholds do not act as a billing limit. Once reached, you will continue to accrue resource usage and be prompted to pay your account balance at that time.</p>
@@ -2282,13 +2317,6 @@ for chunk in response:
         });
         supportMenu.addEventListener('click', function(e) { e.stopPropagation(); });
       }
-      var creditBanner = document.getElementById('onboarding-credit-banner');
-      var creditDismiss = document.getElementById('onboarding-credit-dismiss');
-      if (creditBanner && creditDismiss) {
-        creditDismiss.addEventListener('click', function() {
-          creditBanner.hidden = true;
-        });
-      }
       document.querySelectorAll('.sidebar [data-toggle]').forEach(function(trigger) {
         trigger.addEventListener('click', function() {
           var group = this.closest('.nav-group');
@@ -2378,11 +2406,15 @@ for chunk in response:
         }
       }
       function showGdLimitStep2() {
-        if (gdLimitModalTitle) gdLimitModalTitle.textContent = 'Prepay for Limit Increase';
+        if (gdLimitModalTitle) gdLimitModalTitle.textContent = 'One Time Prepay for Limit Increase';
         if (gdLimitStep1) gdLimitStep1.hidden = true;
         if (gdLimitStep2) gdLimitStep2.hidden = false;
         if (gdLimitStep3) gdLimitStep3.hidden = true;
         if (gdLimitTermsCheckbox) gdLimitTermsCheckbox.checked = false;
+        var expandable = document.getElementById('gd-limit-tier-expandable');
+        var seeAllBtn = document.getElementById('gd-limit-see-all-btn');
+        if (expandable) expandable.hidden = true;
+        if (seeAllBtn) { seeAllBtn.setAttribute('aria-expanded', 'false'); var t = seeAllBtn.querySelector('.gd-limit-see-all-text'); if (t) t.textContent = 'See all limit options'; }
         updateGdLimitPayButton();
       }
       function showGdLimitStep3(amount, threshold, tierName) {
@@ -2404,12 +2436,12 @@ for chunk in response:
         }
       }
       if (gdIncreaseLimitBtn) gdIncreaseLimitBtn.addEventListener('click', openGdLimitModal);
-      var homeUpgradeLimitBtn = document.getElementById('home-upgrade-limit-btn');
-      if (homeUpgradeLimitBtn) homeUpgradeLimitBtn.addEventListener('click', openGdLimitModal);
       var limitsIncreaseBtn = document.getElementById('limits-increase-limit-btn');
       var limitsIncreaseBtn2 = document.getElementById('limits-increase-limit-btn-2');
       if (limitsIncreaseBtn) limitsIncreaseBtn.addEventListener('click', openGdLimitModal);
       if (limitsIncreaseBtn2) limitsIncreaseBtn2.addEventListener('click', openGdLimitModal);
+      var homeTeamLimitIncreaseBtn = document.getElementById('home-team-limit-increase-btn');
+      if (homeTeamLimitIncreaseBtn) homeTeamLimitIncreaseBtn.addEventListener('click', openGdLimitModal);
       if (gdLimitModalClose) gdLimitModalClose.addEventListener('click', closeGdLimitModal);
       document.querySelectorAll('#gd-limit-modal-cancel, #gd-limit-modal-cancel2').forEach(function(btn) { if (btn) btn.addEventListener('click', closeGdLimitModal); });
       if (gdLimitOptionPrepay) gdLimitOptionPrepay.addEventListener('click', function() { gdLimitOptionPrepay.classList.add('gd-limit-option-selected'); gdLimitOptionPrepay.querySelector('.gd-limit-option-radio').classList.add('gd-limit-option-radio-selected'); if (gdLimitOptionTicket) { gdLimitOptionTicket.classList.remove('gd-limit-option-selected'); gdLimitOptionTicket.querySelector('.gd-limit-option-radio').classList.remove('gd-limit-option-radio-selected'); } });
@@ -2476,6 +2508,17 @@ for chunk in response:
         });
       });
       if (gdLimitStep2Back) gdLimitStep2Back.addEventListener('click', function(e) { e.preventDefault(); if (gdLimitModalTitle) gdLimitModalTitle.textContent = 'Increase your limit'; if (gdLimitStep1) gdLimitStep1.hidden = false; if (gdLimitStep2) gdLimitStep2.hidden = true; });
+      var gdLimitSeeAllBtn = document.getElementById('gd-limit-see-all-btn');
+      var gdLimitTierExpandable = document.getElementById('gd-limit-tier-expandable');
+      if (gdLimitSeeAllBtn && gdLimitTierExpandable) {
+        var gdLimitSeeAllText = gdLimitSeeAllBtn.querySelector('.gd-limit-see-all-text');
+        gdLimitSeeAllBtn.addEventListener('click', function() {
+          var expanded = gdLimitSeeAllBtn.getAttribute('aria-expanded') === 'true';
+          gdLimitTierExpandable.hidden = expanded;
+          gdLimitSeeAllBtn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          if (gdLimitSeeAllText) gdLimitSeeAllText.textContent = expanded ? 'See all limit options' : 'Collapse';
+        });
+      }
       var gdLimitModalBack = document.getElementById('gd-limit-modal-back');
       if (gdLimitModalBack) gdLimitModalBack.addEventListener('click', function() { if (gdLimitModalTitle) gdLimitModalTitle.textContent = 'Increase your limit'; if (gdLimitStep1) gdLimitStep1.hidden = false; if (gdLimitStep2) gdLimitStep2.hidden = true; });
       document.querySelectorAll('.gd-limit-tier-selectable').forEach(function(el) {
